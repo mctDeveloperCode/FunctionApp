@@ -20,7 +20,6 @@ variables:
   workingDirectory: '$(System.DefaultWorkingDirectory)/src/FunctionApp'
 
   configuration: 'Release'
-  platform: 'x86'
 
 stages:
 - stage: Build
@@ -45,15 +44,12 @@ stages:
       inputs:
         command: 'build'
         configuration: $(configuration)
-        platform: $(platform)
         projects: FunctionApp.sln
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 
     - task: VSTest@2
       displayName: 'Unit Tests'
       inputs:
-        configuration: $(configuration)
-        platform: $(platform)
         testSelector: 'testAssemblies'
         testAssemblyVer2: '**/*.Test.dll'
         searchFolder: '$(System.DefaultWorkingDirectory)'

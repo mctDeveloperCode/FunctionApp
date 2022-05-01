@@ -14,7 +14,7 @@ variables:
   functionAppName: ''
 
   # Agent VM image name
-  vmImageName: 'windows-2019'
+  vmImageName: 'windows-2022'
 
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/src/FunctionApp'
@@ -30,6 +30,13 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    - task: UseDotNet@2
+      displayName: '.NET 6.0 SDK'
+      inputs:
+        packageType: sdk
+        version: 6.x
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:

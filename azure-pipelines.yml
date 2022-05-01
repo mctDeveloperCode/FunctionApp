@@ -19,7 +19,8 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/src/FunctionApp'
 
-  configuration: 'Release'
+  configuration: Release
+  platform: x64
 
 stages:
 - stage: Build
@@ -50,6 +51,7 @@ stages:
     - task: VSTest@2
       displayName: 'Unit Tests'
       inputs:
+        platform: $(platform)
         testSelector: 'testAssemblies'
         testAssemblyVer2: '**/*.Test.dll'
         searchFolder: '$(System.DefaultWorkingDirectory)'

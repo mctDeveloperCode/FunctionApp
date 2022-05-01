@@ -19,6 +19,8 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/src/FunctionApp'
 
+  configuration: 'Release'
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -43,8 +45,14 @@ stages:
         command: 'build'
         projects: |
           $(workingDirectory)/*.csproj
-        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 
+  - job: Publish
+    displayName: Publish
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:

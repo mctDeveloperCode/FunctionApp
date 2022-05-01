@@ -51,8 +51,9 @@ stages:
       displayName: 'Unit Tests'
       inputs:
         command: 'test'
-        projects: $(workingDirectory)/*.Test.csproj
-      arguments: --no-restore --no-build
+        projects: |
+          $(workingDirectory)/*.Test.csproj
+        arguments: --no-restore --no-build
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'

@@ -56,12 +56,6 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
-  - job: Publish
-    displayName: Publish
-    pool:
-      vmImage: $(vmImageName)
-
-    steps:
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 

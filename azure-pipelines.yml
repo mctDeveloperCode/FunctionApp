@@ -46,12 +46,12 @@ stages:
         projects: FunctionApp.sln
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 
-    - task: DotNetCoreCLI@2
+    - task: VSTest@2
       displayName: 'Unit Tests'
       inputs:
-        command: 'test'
-        projects: FunctionApp.sln
-        arguments: --no-restore --no-build
+        testSelector: 'testAssemblies'
+        testAssemblyVer2: '**/*.Test.dll'
+        searchFolder: '$(System.DefaultWorkingDirectory)'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'

@@ -43,16 +43,14 @@ stages:
       displayName: Build
       inputs:
         command: 'build'
-        projects: |
-          $(workingDirectory)/*.csproj
+        projects: FunctionApp.sln
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 
     - task: DotNetCoreCLI@2
       displayName: 'Unit Tests'
       inputs:
         command: 'test'
-        projects: |
-          $(workingDirectory)/*.Test.csproj
+        projects: FunctionApp.sln
         arguments: --no-restore --no-build
 
     - task: ArchiveFiles@2

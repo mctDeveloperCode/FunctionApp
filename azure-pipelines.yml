@@ -47,6 +47,13 @@ stages:
           $(workingDirectory)/*.csproj
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 
+    - task: DotNetForeCLI@2
+      displayName: 'Unit Tests'
+      inputs:
+        command: 'test'
+        projects: $(workingDirectory)/*.Test.csproj
+      arguments: --no-restore --no-build
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:

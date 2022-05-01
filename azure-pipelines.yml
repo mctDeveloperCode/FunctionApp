@@ -21,6 +21,8 @@ variables:
 
   configuration: 'Release'
 
+  platform: 'x64'
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -49,6 +51,8 @@ stages:
     - task: VSTest@2
       displayName: 'Unit Tests'
       inputs:
+        configuration: $(configuration)
+        platform: $(platform)
         testSelector: 'testAssemblies'
         testAssemblyVer2: '**/*.Test.dll'
         searchFolder: '$(System.DefaultWorkingDirectory)'

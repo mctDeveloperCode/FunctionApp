@@ -52,9 +52,12 @@ stages:
       displayName: 'Unit Tests'
       inputs:
         platform: 'x64'
-        testSelector: 'testAssemblies'
-        testAssemblyVer2: '**/*.Test.dll'
         searchFolder: '$(System.DefaultWorkingDirectory)'
+        testSelector: 'testAssemblies'
+        testAssemblyVer2: |
+          **/*.Test.dll
+          !**\*TestAdapter.dll
+          !**\obj\**
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'

@@ -47,7 +47,7 @@ stages:
           $(workingDirectory)/*.csproj
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 
-    - task: DotNetForeCLI@2
+    - task: DotNetCoreCLI@2
       displayName: 'Unit Tests'
       inputs:
         command: 'test'

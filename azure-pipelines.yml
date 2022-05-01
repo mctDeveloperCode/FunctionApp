@@ -47,12 +47,6 @@ stages:
           $(workingDirectory)/*.csproj
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 
-  - job: Publish
-    displayName: Publish
-    pool:
-      vmImage: $(vmImageName)
-
-    steps:
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -62,6 +56,12 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
+  - job: Publish
+    displayName: Publish
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 

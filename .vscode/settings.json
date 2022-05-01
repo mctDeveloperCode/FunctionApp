@@ -4,5 +4,6 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish (functions)",
-    "dotnet-test-explorer.testProjectPath": "src/**/*.Test.csproj"
+    "dotnet-test-explorer.testProjectPath": "src/**/*.Test.csproj",
+    "azureFunctions.projectSubpath": "src/FunctionApp"
 }

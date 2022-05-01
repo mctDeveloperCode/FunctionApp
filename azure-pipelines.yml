@@ -20,8 +20,7 @@ variables:
   workingDirectory: '$(System.DefaultWorkingDirectory)/src/FunctionApp'
 
   configuration: 'Release'
-
-  platform: 'x64'
+  platform: 'x86'
 
 stages:
 - stage: Build
@@ -37,14 +36,16 @@ stages:
     - task: UseDotNet@2
       displayName: '.NET 6.x SDK'
       inputs:
+        installationPath: $(Agent.ToolsDirectory)/dotnet
         packageType: sdk
         version: 6.x
-        installationPath: $(Agent.ToolsDirectory)/dotnet
 
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
         command: 'build'
+        configuration: $(configuration)
+        platform: $(platform)
         projects: FunctionApp.sln
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(configuration)
 

@@ -11,7 +11,7 @@ variables:
   azureSubscription: '14d9c622-5c53-4946-9a3c-0da9fb30df51'
 
   # Function app name
-  functionAppName: 'FunctionApp'
+  functionAppName: 'mctFunctionApp'
 
   # Agent VM image name
   vmImageName: 'windows-2022'

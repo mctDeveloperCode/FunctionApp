@@ -20,6 +20,11 @@ public sealed class SmokeTestTest
 
 public sealed class TestTempInterface : ITempInterface
 {
-    public void Method()
-    { }
+    private ILogger<TestTempInterface> _logger;
+
+    public TestTempInterface(ILogger<TestTempInterface> logger) =>
+        _logger = logger;
+
+    public void Method() =>
+        _logger.LogInformation("Method in test.");
 }

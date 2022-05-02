@@ -1,3 +1,4 @@
+using MctLearnAzure.FunctionApp;
 using Microsoft.Extensions.Logging;
 using Xunit;
 
@@ -6,14 +7,16 @@ namespace FunctionApp.Test;
 public sealed class SmokeTestTest
 {
     private ITempInterface _tempInterface;
+    private ILogger<SmokeTest> _smokeTestLogger;
 
-    public SmokeTestTest(ITempInterface tempInterface) =>
-        _tempInterface = tempInterface;
+    public SmokeTestTest(ITempInterface tempInterface, ILogger<SmokeTest> smokeTestLogger) =>
+        (_tempInterface, _smokeTestLogger) = (tempInterface, smokeTestLogger);
 
     [Fact]
     public void TempInterfaceMethod()
     {
-        _tempInterface.Method();
+        SmokeTest smokeTest = new (_tempInterface, _smokeTestLogger);
+        var result = smokeTest.GetResponseString("mike");
         Assert.True(true);
     }
 }

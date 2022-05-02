@@ -30,13 +30,20 @@ namespace MctLearnAzure.FunctionApp
 
             _logger.LogInformation("C# HTTP trigger function processed a request. {name}", string.IsNullOrWhiteSpace(name) ? "<EMPTY>" : name);
 
+            string responseMessage = GetResponseString(name);
+
+            return new OkObjectResult(responseMessage);
+        }
+
+        public string GetResponseString(string? name)
+        {
             _tempInterface.Method();
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
                 : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
-            return new OkObjectResult(responseMessage);
+            return responseMessage;
         }
     }
 }

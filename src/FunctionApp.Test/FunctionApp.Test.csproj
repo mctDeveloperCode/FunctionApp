@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Platform>x64</Platform>
     <IsPackable>false</IsPackable>
     <IsPublishable>false</IsPublishable>

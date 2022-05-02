@@ -10,12 +10,17 @@ using Newtonsoft.Json;
 
 namespace MctLearnAzure.FunctionApp
 {
-    public static class SmokeTest
+    public sealed class SmokeTest
     {
+        private ITempInterface _tempInterface;
+        private ILogger<SmokeTest> _logger;
+
+        public SmokeTest(ITempInterface tempInterface, ILogger<SmokeTest> logger) =>
+            (_tempInterface, _logger) = (tempInterface, logger);
+
         [FunctionName("SmokeTest")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
         {
             string? name = req.Query["name"];
 
@@ -23,7 +28,9 @@ namespace MctLearnAzure.FunctionApp
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
-            log.LogInformation("C# HTTP trigger function processed a request. {name}", string.IsNullOrWhiteSpace(name) ? "<EMPTY>" : name);
+            _logger.LogInformation("C# HTTP trigger function processed a request. {name}", string.IsNullOrWhiteSpace(name) ? "<EMPTY>" : name);
+
+            _tempInterface.Method();
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."

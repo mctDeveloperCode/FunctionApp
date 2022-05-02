@@ -1,9 +1,11 @@
 {
     "azureFunctions.deploySubpath": "src\\FunctionApp/bin/Release/net6.0/publish",
+    "azureFunctions.preDeployTask": "publish (functions)",
     "azureFunctions.projectLanguage": "C#",
     "azureFunctions.projectRuntime": "~4",
-    "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "publish (functions)",
-    "dotnet-test-explorer.testProjectPath": "src/**/*.Test.csproj",
-    "azureFunctions.projectSubpath": "src/FunctionApp"
+    "azureFunctions.projectSubpath": "src/FunctionApp",
+
+    "debug.internalConsoleOptions": "openOnFirstSessionStart",
+
+    "dotnet-test-explorer.testProjectPath": "src/**/*.Test.csproj"
 }

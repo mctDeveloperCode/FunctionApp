@@ -33,6 +33,7 @@ namespace MctLearnAzure.FunctionApp
             _logger.LogInformation("name: {name}", name);
 
             _logger.LogInformation("MySetting is '{MySetting}'", _configuration.GetValue<string>("MySetting"));
+            _logger.LogInformation("NewSetting is '{NewSetting}'", _configuration.GetValue<string>("NewSetting"));
 
             return new OkObjectResult(GetResponseString(name));
         }
@@ -45,7 +46,7 @@ namespace MctLearnAzure.FunctionApp
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
                 : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
-            responseMessage = $"{responseMessage}\n\n{_configuration["MySetting"]}";
+            responseMessage = $"{responseMessage}\n\nMySetting={_configuration["MySetting"]}\nNewSetting={_configuration["NewSetting"]}";
 
             return responseMessage;
         }

@@ -21,7 +21,8 @@ public sealed class SmokeTestTest
         var result = smokeTest.GetResponseString("mike");
 
         // TODO: Get congiguration working in test!!
-        _smokeTestLogger.LogInformation($"MySetting is '{_configuration["MySetting"]}'");
+        _smokeTestLogger.LogInformation("MySetting is '{MySetting}'", _configuration["MySetting"]);
+        _smokeTestLogger.LogInformation("NewSetting is '{NewSetting}'", _configuration["NewSetting"]);
 
         Assert.True(true);
     }

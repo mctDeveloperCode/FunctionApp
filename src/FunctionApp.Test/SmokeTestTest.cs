@@ -1,4 +1,5 @@
 using MctLearnAzure.FunctionApp;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Xunit;
 
@@ -8,15 +9,20 @@ public sealed class SmokeTestTest
 {
     private ITempInterface _tempInterface;
     private ILogger<SmokeTest> _smokeTestLogger;
+    private IConfiguration _configuration;
 
-    public SmokeTestTest(ITempInterface tempInterface, ILogger<SmokeTest> smokeTestLogger) =>
-        (_tempInterface, _smokeTestLogger) = (tempInterface, smokeTestLogger);
+    public SmokeTestTest(ITempInterface tempInterface, ILogger<SmokeTest> smokeTestLogger, IConfiguration configuration) =>
+        (_tempInterface, _smokeTestLogger, _configuration) = (tempInterface, smokeTestLogger, configuration);
 
     [Fact]
     public void TempInterfaceMethod()
     {
-        SmokeTest smokeTest = new (_tempInterface, _smokeTestLogger);
+        SmokeTest smokeTest = new (_tempInterface, _smokeTestLogger, _configuration);
         var result = smokeTest.GetResponseString("mike");
+
+        // TODO: Get congiguration working in test!!
+        _smokeTestLogger.LogInformation($"MySetting is '{_configuration["MySetting"]}'");
+
         Assert.True(true);
     }
 }

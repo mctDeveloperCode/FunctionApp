@@ -12,7 +12,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\FunctionApp"
+				"cwd": "${workspaceFolder}/src/FunctionApp"
 			}
 		},
 		{
@@ -71,7 +71,7 @@
 			"type": "func",
 			"dependsOn": "build (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/src/FunctionApp/bin/Debug/net6.0"
+				"cwd": "${workspaceFolder}/src/FunctionApp/bin/x64/Debug/net6.0"
 			},
 			"command": "host start",
 			"isBackground": true,
